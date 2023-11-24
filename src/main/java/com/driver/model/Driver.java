@@ -15,7 +15,7 @@ public class Driver {
     @OneToOne(mappedBy = "driver")
     private Cab cab;
     @OneToMany(mappedBy = "driver")
-    private List<TripBooking> tripBookingList;
+    private List<TripBooking> tripBookingList = new ArrayList<>();
 
     public Driver() {
     }
@@ -25,7 +25,6 @@ public class Driver {
         this.mobile = mobile;
         this.password = password;
         this.cab = cab;
-        this.tripBookingList = new ArrayList<>();
     }
 
     public List<TripBooking> getTripBookingList() {

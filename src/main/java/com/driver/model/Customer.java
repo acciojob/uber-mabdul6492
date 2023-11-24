@@ -17,7 +17,7 @@ public class Customer {
     private String mobile;
     private String password;
     @OneToMany(mappedBy = "customer")
-    private List<TripBooking> tripBookingList;
+    private List<TripBooking> tripBookingList = new ArrayList<>();
 
     public Customer() {
     }
@@ -26,7 +26,6 @@ public class Customer {
         this.customerId = customerId;
         this.mobile = mobile;
         this.password = password;
-        this.tripBookingList = new ArrayList<>();
     }
 
     public List<TripBooking> getTripBookingList() {
