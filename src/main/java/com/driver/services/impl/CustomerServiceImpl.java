@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 		int lowestDriverId = Integer.MAX_VALUE;
 		boolean isAvailable = false;
 		for(Driver driver: driverIterable){
-			if(driver.getCab().isAvailable()){
+			if(driver.getCab().getAvailable()){
 				isAvailable = true;
 				if(driver.getDriverId() < lowestDriverId)
 					lowestDriverId = driver.getDriverId();

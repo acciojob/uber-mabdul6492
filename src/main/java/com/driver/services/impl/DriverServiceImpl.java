@@ -43,7 +43,7 @@ public class DriverServiceImpl implements DriverService {
 		if(driverOptional.isPresent()){
 			Driver driver = driverOptional.get();
 			Cab cab = driver.getCab();
-			cabRepository3.deleteById(cab.getCabId());
+			cabRepository3.deleteById(cab.getId());
 			driverRepository3.deleteById(driverId);
 		}
 	}

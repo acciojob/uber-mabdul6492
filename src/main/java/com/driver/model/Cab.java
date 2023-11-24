@@ -11,7 +11,7 @@ public class Cab {
 
     @Id
     @GeneratedValue
-    private int CabId;
+    private int id;
     private int perKmRate;
     private boolean available;
     @OneToOne
@@ -20,19 +20,20 @@ public class Cab {
     public Cab() {
     }
 
-    public Cab(int cabId, int perKmRate, boolean available, Driver driver) {
-        CabId = cabId;
+    public Cab(int id, int perKmRate, boolean available, Driver driver) {
+        this.id = id;
         this.perKmRate = perKmRate;
         this.available = available;
         this.driver = driver;
     }
 
-    public int getCabId() {
-        return CabId;
+
+    public int getId() {
+        return id;
     }
 
-    public void setCabId(int cabId) {
-        CabId = cabId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPerKmRate() {
@@ -43,7 +44,7 @@ public class Cab {
         this.perKmRate = perKmRate;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 
