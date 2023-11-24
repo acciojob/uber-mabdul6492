@@ -11,6 +11,7 @@ import com.driver.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,7 +64,8 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setStatus(TripStatus.CONFIRMED);
 
 		Customer customer = customerRepository2.findById(customerId).get();
-		customer.getTripBookingList().add(tripBooking);
+		List<TripBooking> tripBookingList = customer.getTripBookingList();
+		tripBookingList.add(tripBooking);
 		customerRepository2.save(customer);
 
 		Driver driver = driverRepository2.findById(lowestDriverId).get();
