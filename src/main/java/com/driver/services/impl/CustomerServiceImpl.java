@@ -45,16 +45,17 @@ public class CustomerServiceImpl implements CustomerService {
 		Iterable<Driver> driverIterable = driverRepository2.findAll();
 
 		int lowestDriverId = Integer.MAX_VALUE;
-		boolean isAvailable = false;
+		Driver driverD = null;
 		for(Driver driver: driverIterable){
 			if(driver.getCab().getAvailable()){
-				isAvailable = true;
-				if(driver.getDriverId() < lowestDriverId)
+				if(driver.getDriverId() <= lowestDriverId) {
 					lowestDriverId = driver.getDriverId();
+					driverD = driver;
+				}
 			}
 		}
 
-		if(!isAvailable) throw new Exception("No cab available!");
+		if(driverD == null) throw new Exception("No cab available!");
 
 		TripBooking tripBooking = new TripBooking();
 
@@ -68,11 +69,10 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBookingList.add(tripBooking);
 		customerRepository2.save(customer);
 
-		Driver driver = driverRepository2.findById(lowestDriverId).get();
-		driver.getTripBookingList().add(tripBooking);
-		driverRepository2.save(driver);
+		driverD.getTripBookingList().add(tripBooking);
+		driverRepository2.save(driverD);
 
-		tripBooking.setBill(driver.getCab().getPerKmRate()*distanceInKm);
+		tripBooking.setBill(driverD.getCab().getPerKmRate()*distanceInKm);
 		tripBookingRepository2.save(tripBooking);
 
 		return tripBooking;
