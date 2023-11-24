@@ -33,7 +33,6 @@ public class DriverServiceImpl implements DriverService {
 		driver.setPassword(password);
 
 		driverRepository3.save(driver);
-		cabRepository3.save(cab);
 	}
 
 	@Override
